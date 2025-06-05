@@ -19,6 +19,11 @@ export async function generateMetadata({
 }): Promise<Metadata | undefined> {
   let post = await getPost(params.slug);
 
+  // Fix here: check for post and post.metadata
+  if (!post || !post.metadata) {
+    return undefined;
+  }
+
   let {
     title,
     publishedAt: publishedTime,
@@ -60,7 +65,8 @@ export default async function Blog({
 }) {
   let post = await getPost(params.slug);
 
-  if (!post) {
+  // Fix here: check for post and post.metadata
+  if (!post || !post.metadata) {
     notFound();
   }
 
