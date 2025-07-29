@@ -1,0 +1,113 @@
+---
+title: "Building a Smart Caching Service with WSO2 Ballerina"
+publishedAt: "2025-07-29"
+summary: "How a WSO2 community challenge pushed me to build a smart caching microservice to solve a real-world data problem in my main application."
+---
+
+**#WSO2 #Ballerina #Microservices #Integration #API**
+
+Every developer has a list of small "helper" services they plan to build but never get around to. For my Ebook Reader application, one of those was a service to find a book's ISBN. The data was scattered — some in my database, some on public APIs. I needed a single, fast way to get it.
+
+But I never had the momentum.
+
+That changed when I saw the **“WSO2 Real-World Integration Challenge”**.
+
+It wasn’t just a reason to finally build the service. It gave me a deadline, a community, and the promise of a **WSO2 T-shirt** for finishing.
+
+---
+
+## 🔧 The Challenge That Made It Happen
+
+The *WSO2 Real-World Integration Challenge* was a community event pushing developers to use a WSO2 product to solve a practical integration problem and share their story.
+
+The steps were simple:
+1. Build with a **WSO2 Product** (I chose Ballerina)
+2. Write a blog/video about it
+3. Share it with the community
+4. Redeem cool swag
+
+The barrier to entry was low, which was the exact push I needed to get started.
+
+---
+
+## 📖 Introducing: *Title2ISBN Service*
+
+A **Ballerina-based microservice** that acts as a smart caching layer. When my Ebook Reader app needs an ISBN for a book title, it asks this service. The service checks its own cache (an Appwrite database) and only calls the external Open Library API if it's a new book.
+
+### Core Features
+
+- ⚡️ Caching logic to reduce latency
+- 📞 Fetches data from external REST APIs
+- 💾 Persists new data to an Appwrite DB
+- 📦 Provides a single, clean REST endpoint
+- 📊 Includes comprehensive logging
+
+It’s a simple, focused microservice that solves one problem really well — thanks to Ballerina.
+
+---
+
+## 🤖 How WSO2 Ballerina Helped
+
+I was new to Ballerina, but setup was quick. The real magic happened in the VS Code extension.
+
+The **Ballerina Visualizer** was incredibly useful. It automatically generated a sequence diagram of my code *as I was writing it*. I didn't have to draw anything. I could literally see my logic:
+
+1.  Request comes into the service.
+2.  A branch appears: `if book in cache?`
+3.  The "Yes" path goes straight to the final response.
+4.  The "No" path shows the call to the Open Library API, then another call to the Appwrite API to save the result, and *then* the final response.
+
+Seeing this visual flow confirmed my logic was sound and made debugging much easier. The language itself, with its `record` types for handling JSON and its straightforward `http:Client`, made the networking code feel clean and safe.
+
+---
+
+## 🏗️ Project Architecture
+
+| Component | Purpose |
+|---|---|
+| **REST API Layer** | Exposes the `/isbn` endpoint to the main application. |
+| **Caching Logic** | The core `if/else` block that decides to query the cache or fetch externally. |
+| **Appwrite Connector** | The HTTP client code responsible for talking to the Appwrite database. |
+| **External API Connector** | The HTTP client code for fetching data from the Open Library API. |
+| **Data Models** | `record` types in Ballerina that define the shape of our data for type-safety. |
+
+The service is designed to be a small, independent part of my larger Ebook Reader application ecosystem.
+
+---
+
+## 🚧 Known Issues
+
+- Only queries one external data source (Open Library) for now
+- Error handling is basic
+- No price comparison or other metadata is fetched yet
+- Needs proper deployment setup
+
+But that's okay. The primary goal was to build a working, efficient caching service.
+
+---
+
+## 📈 What’s Next?
+
+**Short-Term:**
+- Add Google Books as a fallback data source
+- Refine error handling and response codes
+
+**Long-Term:**
+- Containerize the service with Docker
+- Deploy to a cloud platform like **WSO2 Choreo**
+- Build another Ballerina service for price comparison
+
+---
+
+## 🎁 Final Thoughts & Swag
+
+If you have a nagging integration problem you've been putting off, I highly recommend trying out Ballerina. The language and its tooling gave me the momentum to finally build this service.
+
+Ballerina didn't just help me write code; it helped me *visualize* it.
+
+Check out the repo: [GitHub – Walapalam/title2isbn-service](https://github.com/Walapalam/title2isbn-service)
+Fork it, watch it, or try running the build.
+
+---
+
+**#WSO2 | #Ballerina | #Microservices | #Integration | #API**
