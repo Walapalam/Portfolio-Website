@@ -4,7 +4,7 @@ import { Baby, BabyIcon, BadgeAlert, HomeIcon, NotebookIcon } from "lucide-react
 export const DATA = {
   name: "Raqeeb Rameez",
   initials: "RR",
-  url: "https://dillion.io",
+  url: "https://raqeeb-rameez.me",
   location: "Mount-Lavinia, Sri Lanka",
   locationLink: "https://www.google.com/maps/place/Colombo",
   description:
@@ -72,7 +72,7 @@ export const DATA = {
       },
       Youtube: {
         name: "Youtube",
-        url: "https://dub.sh/dillion-youtube",
+        url: "https://youtube.com",
         icon: Icons.youtube,
         navbar: true,
       },
@@ -95,7 +95,7 @@ export const DATA = {
       title: "Data Engineering and Automation (Freelance)",
       logoUrl: "/santani_logo.jpg",
       start: "Jan 2025",
-      end: "Current",
+      end: "June 2025",
       description:
         "Developed Python ETL scripts for ingesting marketing analytics from Google Ads, Meta Ads; Designed efficient database schemas for BI tools; Integrated APIs and handled token-based authentication and data validation",
     },
